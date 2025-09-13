@@ -7,7 +7,7 @@ app = FastAPI()
 # Allow frontend (local + netlify) to call backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5500", "http://localhost:5500", "https://ainternnn.netlify.app"],  
+    allow_origins=[""https://ainternnn.netlify.app"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -95,4 +95,5 @@ def match_internships(
     if _name_ == "_main_":
      import uvicorn
      uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+
     return {"Matches": results}
