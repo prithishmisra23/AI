@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      background: #f9f9f9;
+    }
+
+    header {
+      height: 60px;
+      width: 100%;
+      background: #f57c00;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      position: fixed;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 20px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .icons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .icons span {
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .logout-btn {
+      padding: 8px 14px;
+      background: white;
+      color: #f57c00;
+      border: 2px solid #f57c00;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .logout-btn:hover {
+      background: #f57c00;
+      color: white;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: #fff;
+      color: #333;
+      height: 100vh;
+      padding-top: 80px;
+      position: fixed;
+      border-right: 1px solid #ddd;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #f57c00;
+      font-size: 22px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #333;
+      padding: 12px;
+      text-decoration: none;
+      margin: 5px 15px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .sidebar a:hover {
+      background: #ffe0b2;
+      color: #f57c00;
+    }
+
+    .main {
+      flex: 1;
+      margin-left: 220px;
+      padding: 100px 30px 30px 30px;
+      background: #f9f9f9;
+      min-height: 100vh;
+    }
+
+    .main h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 18px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      color: #f57c00;
+    }
+
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0;
+    }
+
+    .setting-row label {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .toggle {
+      position: relative;
+      width: 50px;
+      height: 24px;
+      background: #ccc;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    .toggle.active {
+      background: #f57c00;
+    }
+
+    .toggle.active::before {
+      transform: translateX(26px);
+    }
+
+    .card button {
+      padding: 8px 14px;
+      background: #f57c00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .card button:hover {
+      background: #e65100;
+    }
+
+    select {
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>AiNTERN – Internship Portal</h1>
+  <div class="icons">
+    <span>🔔</span>
+    <span>👤</span>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+</header>
+
+<div class="sidebar">
+  <h2>AiNTERN</h2>
+  <a href="dashboard.html">🏠 Dashboard</a>
+  <a href="find.html">🔍 Find Internships</a>
+  <a href="applications.html">📂 My Applications</a>
+  <a href="skills.html">⭐ Skill Insights</a>
+  <a href="profile.html">👤 Profile</a>
+  <a href="settings.html">⚙️ Settings</a>
+  <a href="logout.html"><i class="fas fa-sign-out-alt"></i>⏻ Logout</a>
+</div>
+
+<div class="main">
+  <h1>Settings</h1>
+
+  <div class="card">
+    <h2>Account Settings</h2>
+    <div class="setting-row">
+      <label>Receive Notifications</label>
+      <div class="toggle" onclick="toggleSwitch(this)"></div>
+    </div>
+    <div class="setting-row">
+      <label>Enable Dark Mode</label>
+      <div class="toggle" onclick="toggleSwitch(this)"></div>
+    </div>
+    <div class="setting-row">
+      <label>Language</label>
+      <select>
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Tamil</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <label>Timezone</label>
+      <select>
+        <option>Asia/Kolkata</option>
+        <option>UTC</option>
+        <option>Asia/Tokyo</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Security</h2>
+    <p><b>Password:</b> ********</p>
+    <button onclick="alert('Redirecting to password update...')">Change Password</button>
+  </div>
+</div>
+
+<script>
+  function logout() {
+    window.location.href = "student-login.html";
+  }
+
+  function toggleSwitch(el) {
+    el.classList.toggle("active");
+  }
+</script>
+</body>
+</html>

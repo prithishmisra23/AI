@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Login | PM Internship Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Student Portal</h2>
+    <form id="loginForm" class="auth-form">
+      <label for="student-email">Email</label>
+      <input type="email" id="student-email" required>
+
+      <label for="student-password">Password</label>
+      <input type="password" id="student-password" required>
+
+      <button type="submit" class="btn">Login</button>
+      <p class="switch">New here? <a href="studentreg.html">Register Now</a></p>
+    </form>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } 
+            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    // Your Firebase config (replace with your project details)
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbMUoq3Cjx3IvWo-b2hPsp-s9E3cAHRsY",
+      authDomain: "aintern-285f9.firebaseapp.com",
+      projectId: "aintern-285f9",
+      storageBucket: "aintern-285f9.firebasestorage.app",
+      messagingSenderId: "1035209257137",
+      appId: "1:1035209257137:web:dd20ce2d10842d6f127290",
+      measurementId: "G-4QSNCJQYFY"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Login Form Submit
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("student-email").value;
+      const password = document.getElementById("student-password").value;
+
+      try {
+        const userCred = await signInWithEmailAndPassword(auth, email, password);
+        alert("✅ Login successful!");
+        // Redirect to dashboard after login
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        alert("❌ Error: " + error.message);
+      }
+    });
+  </script>
+  
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AiNTERN Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    function login() {
+      // Get input values
+      const id = document.getElementById("studentId").value.trim();
+      const pass = document.getElementById("password").value.trim();
+
+      // Simple validation
+      if(id === "" || pass === "") {
+        alert("Please enter both Student ID and Password");
+        return;
+      }
+
+      // Redirect to dashboard
+      window.location.href = "dashboard.html"; 
+    }
+  </script>
+</body>
+</html>
+

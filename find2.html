@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiNTERN – Find Internships</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --primary-dark: #1e293b;
+      --accent: #f39c12;
+      --bg: #f8fafc;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 20px;
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .main {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .filters select,
+    .filters input {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      min-width: 160px;
+      font-size: 0.95rem;
+    }
+
+    .selected-list {
+      margin-top: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent);
+      color: white;
+      padding: 5px 10px;
+      margin: 5px 5px 0 0;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      cursor: default;
+    }
+
+    .chip button {
+      background: transparent;
+      border: none;
+      color: white;
+      margin-left: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .search-btn {
+      padding: 12px 25px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+
+    .search-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    #internshipResults p {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .loading {
+      font-style: italic;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      .filters select,
+      .filters input {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="main">
+  <!-- Search & Filters -->
+  <div class="card">
+    <h2>Search & Filter</h2>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search internship title..." />
+
+      <select onchange="addFilter(this)">
+        <option disabled selected>Class 10th percentage criteria</option>
+        <option>65</option>
+        <option>70</option>
+        <option>75</option>
+        <option>80</option>
+        <option>85</option>
+        <option>90</option>
+        <option>95</option>
+      </select>
+
+      <select onchange="addFilter(this)">
+        <option disabled selected>Class 10th percentage criteria</option>
+        <option>65</option>
+        <option>70</option>
+        <option>75</option>
+        <option>80</option>
+        <option>85</option>
+        <option>90</option>
+        <option>95</option>
+      </select>
+
+      <select onchange="addFilter(this)">
+        <option disabled selected>Degree</option>
+        <option>B.A.</option>
+        <option>B.Com</option>
+        <option>B.E.</option>
+        <option>B.Sc.</option>
+        <option>B.Tech</option>
+        <option>BBA</option>
+        <option>Diploma</option>
+      </select>
+
+      <select onchange="addFilter(this)">
+        <option disabled selected>Language</option>
+        <option>Hindi</option>
+        <option>English</option>
+        <option>Assamese</option>
+        <option>Bengali</option>
+        <option>Gujarati</option>
+        <option>Kannada</option>
+        <option>Kashmiri</option>
+        <option>Malayalam</option>
+        <option>Manipuri</option>
+        <option>Marathi</option>
+        <option>Nepali</option>
+        <option>Odia</option>
+        <option>Punjabi</option>
+        <option>Sanskrit</option>
+        <option>Sindhi</option>
+        <option>Tamil</option>
+        <option>Telugu</option>
+        <option>Urdu</option>
+      </select>
+
+      <select onchange="addFilter(this)">
+        <option disabled selected>Skill</option>
+        <option>Accounting</option>
+        <option>CAD Design</option>
+        <option>Cloud Computing</option>
+        <option>Coding</option>
+        <option>Financial Analysis</option>
+        <option>Lab Skills</option>
+        <option>Machine Learning</option>
+        <option>Marketing</option>
+        <option>Programming</option>
+        <option>Research</option>
+        <option>Robotics</option>
+        <option>SEO</option>
+        <option>UI/UX</option>
+        <option>Writing</option>
+      </select>
+
+      <select onchange="addFilter(this)">
+        <option disabled selected>Specialisation</option>
+        <option>AI</option>
+        <option>Biology</option>
+        <option>Chemistry</option>
+        <option>Commerce</option>
+        <option>Computer Science</option>
+        <option>Engineering</option>
+        <option>Finance</option>
+        <option>Genetics</option>
+        <option>History</option>
+        <option>IT</option>
+        <option>Literature</option>
+        <option>Marketing</option>
+        <option>Mechanical Engineering</option>
+        <option>Physics</option>
+        <option>Sociology</option>
+      </select>
+
+      <select onchange="addFilter(this)">
+        <option disabled selected>Domain</option>
+        <option>Consulting</option>
+        <option>Data Analytics</option>
+        <option>Design</option>
+        <option>Engineering</option>
+        <option>Finance</option>
+        <option>HR</option>
+        <option>IT</option>
+        <option>Marketing</option>
+        <option>Operations</option>
+        <option>R&D</option>
+      </select>
+    </div>
+
+    <div class="selected-list" id="selectedFilters"></div>
+    <button class="search-btn" onclick="searchInternships()">Search</button>
+  </div>
+
+  <!-- Results -->
+  <div class="card" id="internshipResults">
+    <h2>Available Internships</h2>
+    <p>AI Research Intern – Swaroop Patil</p>
+    <p>Data Science Intern – Mukarab Khan</p>
+    <p>Web Development Intern – Aditya Pathak</p>
+    <p>UX Design Intern – Adrija Jassu</p>
+    <p>Cloud Intern – Ekantika Mahajan</p>
+  </div>
+</div>
+
+<script>
+  const selected = [];
+  const internships = [
+    "AI Research Intern – Swaroop Patil",
+    "Data Science Intern – Mukarab Khan",
+    "Web Development Intern – Aditya Pathak",
+    "UX Design Intern – Adrija Jassu",
+    "Cloud Intern – Ekantika Mahajan"
+  ];
+
+  function addFilter(select) {
+    const value = select.value;
+    if (value && !selected.includes(value)) {
+      selected.push(value);
+      updateSelectedList();
+    }
+    select.selectedIndex = 0;
+  }
+
+  function updateSelectedList() {
+    const container = document.getElementById("selectedFilters");
+    container.innerHTML = "";
+    selected.forEach((item, index) => {
+      const chip = document.createElement("span");
+      chip.className = "chip";
+      chip.innerHTML = `${item} <button onclick="removeFilter(${index})">&times;</button>`;
+      container.appendChild(chip);
+    });
+  }
+
+  function removeFilter(index) {
+    selected.splice(index, 1);
+    updateSelectedList();
+  }
+
+  function searchInternships() {
+    const results = document.getElementById("internshipResults");
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    results.innerHTML = "<h2>Available Internships</h2><p class='loading'>Searching...</p>";
+
+    setTimeout(() => {
+      const filtered = internships.filter(role => {
+        const lower = role.toLowerCase();
+        return (
+          lower.includes(query) ||
+          selected.some(term => lower.includes(term.toLowerCase()))
+        );
+      });
+
+      results.innerHTML = "<h2>Available Internships</h2>";
+      if (filtered.length === 0) {
+        results.innerHTML += "<p>No internships match your criteria.</p>";
+      } else {
+        filtered.forEach(item => {
+          results.innerHTML += `<p>${item}</p>`;
+        });
+      }
+    }, 400);
+  }
+</script>
+
+</body>
+</html>

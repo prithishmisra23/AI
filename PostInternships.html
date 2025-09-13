@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Post Internship | PM Internship Portal</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fa;
+      margin: 0;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: #2f3b52;
+      color: #fff;
+      padding-top: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 20px;
+      color: #fff;
+    }
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 10px;
+      border-left: 4px solid transparent;
+      transition: all 0.3s;
+    }
+    .sidebar a:hover, .sidebar a.active {
+      background: #1e2a3c;
+      border-left: 4px solid #ff7f50;
+    }
+
+    /* Main Content */
+    .main {
+      margin-left: 250px;
+      padding: 20px;
+      width: calc(100% - 250px);
+    }
+    .form-container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 1000px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #ff7f50;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #e06a3f;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2><i class="fas fa-graduation-cap"></i> PM Internship</h2>
+    <a href="recruiter.html"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="PostInternships.html" class="active"><i class="fas fa-briefcase"></i> Post Internships</a>
+    <a href="RecruiterApplications.html"><i class="fas fa-file-alt"></i> Applications</a>
+    <a href="RecruiterSettings.html"><i class="fas fa-cog"></i> Settings</a>
+    <a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="form-container">
+      <h2>Post Internship Requirement</h2>
+      <form id="internshipForm">
+        
+        <!-- Basic Info -->
+        <div class="form-group"><label>Company Name</label><input type="text" id="company_name" required></div>
+        <div class="form-group"><label>Job Title</label><input type="text" id="job_title" required></div>
+        
+        <!-- Candidate Requirements -->
+        <div class="form-group"><label>Age</label><input type="number" id="age"></div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select id="gender">
+            <option value="">Any</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Category</label><input type="text" id="category"></div>
+        <div class="form-group"><label>Minimum Class 10 %</label><input type="number" id="min_class10"></div>
+        <div class="form-group"><label>Minimum Class 12 %</label><input type="number" id="min_class12"></div>
+        <div class="form-group"><label>Minimum Graduation %</label><input type="number" id="min_grad"></div>
+        <div class="form-group"><label>Degree Required</label><input type="text" id="degree_required"></div>
+        <div class="form-group"><label>Year of Passing</label><input type="number" id="year_of_passing"></div>
+        <div class="form-group"><label>Extra Courses</label><input type="text" id="extra_courses"></div>
+        <div class="form-group"><label>Specialisation</label><input type="text" id="specialisation"></div>
+        <div class="form-group"><label>Languages Known</label><input type="text" id="languages"></div>
+        <div class="form-group"><label>Skills</label><input type="text" id="skills"></div>
+        <div class="form-group"><label>Experience (yrs)</label><input type="number" id="experience"></div>
+        <div class="form-group"><label>Preferred Location</label><input type="text" id="preferred_location"></div>
+        <div class="form-group"><label>Duration</label><input type="text" id="duration"></div>
+
+        <!-- Additional -->
+        <div class="form-group"><label>Projects</label><textarea id="projects"></textarea></div>
+        <div class="form-group"><label>Competitions</label><textarea id="competitions"></textarea></div>
+        <div class="form-group"><label>Publications</label><textarea id="publications"></textarea></div>
+        <div class="form-group"><label>Patents</label><textarea id="patents"></textarea></div>
+        
+        <button type="button" onclick="postInternship()">Submit Requirement</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Supabase Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.27.0/dist/umd/supabase.min.js"></script>
+  <script>
+    const SUPABASE_URL = "https://xozzpzasbdvgpyysuvew.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvenpwemFzYmR2Z3B5eXN1dmV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc3MDA0NjMsImV4cCI6MjA3MzI3NjQ2M30.SiiaH38cNz21EHpvGOZNQCQ5vW2f6H2GBocGn4qYfGM";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function postInternship() {
+      const formData = {
+        company_name: document.getElementById("company_name").value,
+        job_title: document.getElementById("job_title").value,
+        age: document.getElementById("age").value,
+        gender: document.getElementById("gender").value,
+        category: document.getElementById("category").value,
+        min_class10: document.getElementById("min_class10").value,
+        min_class12: document.getElementById("min_class12").value,
+        min_grad: document.getElementById("min_grad").value,
+        degree_required: document.getElementById("degree_required").value,
+        year_of_passing: document.getElementById("year_of_passing").value,
+        extra_courses: document.getElementById("extra_courses").value,
+        specialisation: document.getElementById("specialisation").value,
+        languages: document.getElementById("languages").value,
+        skills: document.getElementById("skills").value,
+        experience: document.getElementById("experience").value,
+        preferred_location: document.getElementById("preferred_location").value,
+        duration: document.getElementById("duration").value,
+        projects: document.getElementById("projects").value,
+        competitions: document.getElementById("competitions").value,
+        publications: document.getElementById("publications").value,
+        patents: document.getElementById("patents").value
+      };
+
+      const { error } = await supabase.from("internships").insert([formData]);
+
+      if (error) {
+        console.error("Error posting internship:", error.message);
+        alert("Error posting internship");
+      } else {
+        alert("Internship requirement posted successfully!");
+        document.getElementById("internshipForm").reset();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recruiter Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0078D4, #00C6FF);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-box {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      width: 350px;
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #0078D4;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.3s;
+    }
+    input:focus {
+      border-color: #0078D4;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background: #0078D4;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Recruiter Login</h2>
+    <form id="recruiterLoginForm">
+      <input type="email" id="recruiterEmail" placeholder="Email" required>
+      <input type="password" id="recruiterPassword" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("recruiterLoginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("recruiterEmail").value.trim();
+      const password = document.getElementById("recruiterPassword").value.trim();
+
+      if (email === "recruiter@aintern.com" && password === "recruit123") {
+        alert("Welcome Recruiter!");
+        sessionStorage.setItem("isRecruiter", "true");
+        window.location.href = "recruiter.html";
+      } else {
+        alert("Invalid recruiter credentials!");
+      }
+    });
+  </script>
+</body>
+</html>

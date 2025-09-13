@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recruiter Settings | PM Internship Portal</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      background: #f5f7fa; 
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    .sidebar { 
+      width: 250px; 
+      height: 100vh; 
+      background: #2c3e50; 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      color: #fff; 
+      padding-top: 20px; 
+      overflow-y: auto;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+    .sidebar h2 { 
+      text-align: center; 
+      margin-bottom: 30px;
+      color: #ecf0f1;
+      font-weight: 600;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .sidebar a { 
+      display: flex; 
+      align-items: center;
+      padding: 15px 20px; 
+      color: #bdc3c7; 
+      text-decoration: none; 
+      margin-bottom: 5px; 
+      border-left: 4px solid transparent;
+      transition: all 0.3s;
+    }
+    .sidebar a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+    .sidebar a:hover, .sidebar a.active { 
+      background: #34495e; 
+      color: #fff;
+      border-left: 4px solid #3498db;
+    }
+    .main { 
+      margin-left: 250px; 
+      padding: 25px; 
+    }
+    .header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e0e6ed;
+    }
+    .header h1 { 
+      margin: 0; 
+      font-size: 28px; 
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    .settings-section {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .settings-section h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+    .settings-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e0e6ed;
+    }
+    .settings-item:last-child {
+      border-bottom: none;
+    }
+    .settings-item label {
+      font-weight: 500;
+      color: #555;
+    }
+    .settings-item input[type="checkbox"] {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+    .settings-item select, .settings-item input[type="password"] {
+      padding: 8px 12px;
+      border: 1px solid #dce1e6;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    .btn {
+      padding: 10px 18px; 
+      border: none; 
+      background: #3498db; 
+      color: #fff; 
+      border-radius: 6px; 
+      cursor: pointer; 
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    .btn:hover { 
+      background: #2980b9; 
+    }
+    .dark-mode {
+      background: #2c3e50;
+      color: #ecf0f1;
+    }
+    .dark-mode .settings-section {
+      background: #34495e;
+      color: #ecf0f1;
+    }
+    .dark-mode .header h1 {
+      color: #ecf0f1;
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2><i class="fas fa-graduation-cap"></i> PM Internship</h2>
+    <a href="recruiter.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="PostInternships.html"><i class="fas fa-briefcase"></i> Post Internships</a>
+    <a href="RecruiterApplications.html"><i class="fas fa-file-alt"></i> Applications</a>
+    <a href="RecruiterSettings.html"><i class="fas fa-cog"></i> Settings</a>
+    <a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="header">
+      <h1><i class="fas fa-cog"></i> Recruiter Settings</h1>
+    </div>
+
+    <!-- Account Settings -->
+    <div class="settings-section">
+      <h2><i class="fas fa-user-circle"></i> Account Settings</h2>
+      <div class="settings-item">
+        <label>Receive Notifications</label>
+        <input type="checkbox" id="notifications" checked>
+      </div>
+      <div class="settings-item">
+        <label>Enable Dark Mode</label>
+        <input type="checkbox" id="darkmode">
+      </div>
+      <div class="settings-item">
+        <label>Language</label>
+        <select id="language">
+          <option value="en" selected>English</option>
+          <option value="hi">Hindi</option>
+        </select>
+      </div>
+      <div class="settings-item">
+        <label>Timezone</label>
+        <select id="timezone">
+          <option value="Asia/Kolkata" selected>Asia/Kolkata</option>
+          <option value="UTC">UTC</option>
+          <option value="America/New_York">America/New_York</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Security -->
+    <div class="settings-section">
+      <h2><i class="fas fa-lock"></i> Security</h2>
+      <div class="settings-item">
+        <label>Password</label>
+        <input type="password" value="********" disabled>
+        <button class="btn" onclick="changePassword()">Change Password</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const darkModeToggle = document.getElementById("darkmode");
+
+    darkModeToggle.addEventListener("change", () => {
+      document.body.classList.toggle("dark-mode", darkModeToggle.checked);
+    });
+
+    function changePassword() {
+      alert("Redirecting to change password functionality (to be integrated with Supabase Auth).");
+    }
+  </script>
+</body>
+</html>
+

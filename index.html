@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AiNTERN - AI Allocation Engine</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link rel="icon" type="image/png" href="AinternFavicon.png">
+   <!-- Firebase App (required) -->
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
+
+<!-- Firebase Auth -->
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"></script>
+
+<!-- Firebase Firestore -->
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"></script>
+
+</head>
+<body>
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">AiNTERN <span>Portal</span></div>
+    <nav class="nav-links">
+      <a href="https://www.pmindia.gov.in/" class="logo-link" target="_blank" rel="noopener noreferrer"><img class="logo--pm" src="favicon.png" alt="PMO"></a>
+      <a href="https://www.mca.gov.in/" class="logo-link" target="_blank" rel="noopener noreferrer"><img src="Ministry_of_Corporate_Affairs_India.png" alt="Ministry of Corporate Affairs"></a>
+      <a href="https://pminternship.mca.gov.in/login/" class="logo-link" target="_blank" rel="noopener noreferrer"><img class="logo--pminternship" src="pminternship.png" alt="PM Internship Portal"></a>
+      <a href="https://workforbharat.niti.gov.in/" class="logo-link" target="_blank" rel="noopener noreferrer"><img class="logo--viksitbharat" src="viksitbharat.png" alt="Viksit Bharat"></a>
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home">
+    <div class="container">
+      <h1>Welcome to the AiNTERN Portal</h1>
+      <p>Discover internship opportunities tailored to your skills with our AI-powered allocation engine.</p>
+      <div class="cta-buttons">
+        <a href="#contact" class="btn">Contact Us</a>
+        <a href="#about" class="btn secondary">Learn More</a>
+      </div>
+      <div class="big-buttons">
+        <a href="student-login.html" class="role-btn student">Student</a>
+        <a href="recruiter-login.html" class="role-btn recruiter">Recruiter</a>
+        <a href="admin-login.html" class="role-btn admin">Admin</a>
+      </div>
+      <div class="info-cards">
+        <div class="card"><i class="fas fa-robot icon"></i><h3>AI Matching</h3><p>Our AI engine matches your skills and preferences with the best internship opportunities.</p></div>
+        <div class="card"><i class="fas fa-briefcase icon"></i><h3>Top Companies</h3><p>Connect with leading organizations offering real-world project management experience.</p></div>
+        <div class="card"><i class="fas fa-graduation-cap icon"></i><h3>Career Growth</h3><p>Gain skills and mentorship to kickstart your career in project management.</p></div>
+      </div>
+    </div>
+  </section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <h2>About the Program</h2>
+    <p>The AiNTERN Portal connects learners, recruiters, and institutions through an AI-powered allocation engine that matches profiles to opportunities based on skills, interests, and goals. Our approach emphasizes transparency and equal access, using explainable models and anonymized matching to reduce bias. Students discover relevant roles faster, recruiters reach motivated talent at scale, and institutions gain insights that help improve curricula and outcomes.</p>
+
+    <div class="about-layout">
+      <!-- Left: Illustration -->
+      <div class="about-illustration">
+        <img id="about-illustration-img" class="img-tint tint-blue" src="https://cdn.builder.io/api/v1/image/assets%2Fd90bbe9fa7e84f6aa0f8e85ef524c7ad%2F90638ea550664f6182debc7771e25fd4?format=webp&width=800" alt="AI learning illustration" />
+        <div class="tint-controls" aria-label="Change illustration color">
+          <button class="tint-btn" data-tint="tint-blue">Blue</button>
+          <button class="tint-btn secondary" data-tint="tint-green">Green</button>
+          <button class="tint-btn outline" data-tint="tint-mono">Mono</button>
+        </div>
+      </div>
+
+     <!-- Critics' Corner -->
+<div class="critics-corner">
+  <h3><i class="fas fa-comment-dots"></i> Critics’ Corner</h3>
+  <div class="review-wrapper">
+    <div class="review-card active">
+      <h4>Aarav Sharma</h4>
+      <span class="role">Web Developer</span>
+      <p>"This website helped me find the perfect internship. Super smooth and easy to use!"</p>
+      <span class="timeline">— August 2025</span>
+    </div>
+    <div class="review-card">
+      <h4>Priya Nair</h4>
+      <span class="role">Student</span>
+      <p>"Loved the platform! Found an internship in just 3 days."</p>
+      <span class="timeline">— July 2025</span>
+    </div>
+    <div class="review-card">
+      <h4>Rohan Verma</h4>
+      <span class="role">AI Enthusiast</span>
+      <p>"Amazing interface and smooth process. Highly recommend!"</p>
+      <span class="timeline">— June 2025</span>
+    </div>
+    <div class="review-card">
+      <h4>Karan Mehta</h4>
+      <span class="role">Full Stack Intern</span>
+      <p>"AiNTERN matched me with a role that fit my skills perfectly. Great experience!"</p>
+      <span class="timeline">— May 2025</span>
+    </div>
+  </div>
+</div>
+</div>
+  </div>
+</section>
+
+<script>
+  const reviews = document.querySelectorAll(".review-card");
+  let current = 0;
+
+  setInterval(() => {
+    reviews[current].classList.remove("active");
+    current = (current + 1) % reviews.length;
+    reviews[current].classList.add("active");
+  }, 3000);
+</script>
+  
+
+
+  <!-- Insights & Statistics -->
+  <section id="insights">
+    <div class="container">
+      <h2>Insights & Statistics</h2>
+      <p class="section-intro">Percentage-wise state distribution of internship offers, gender representation, and participating companies from the pilot rounds.</p>
+
+      <div class="round-toggle" role="tablist" aria-label="Offer rounds">
+        <button class="toggle-btn active" data-round="r1" aria-selected="true">Round 1</button>
+        <button class="toggle-btn" data-round="r2" aria-selected="false">Round 2</button>
+      </div>
+
+      <div class="map-and-legend">
+        <div class="india-map-card">
+          <h3 class="map-title">Percentage-wise State Distribution</h3>
+          <div id="india-map" class="india-map" aria-live="polite"></div>
+          <div class="map-legend">
+            <span>Lower</span>
+            <div class="legend-gradient"></div>
+            <span>Higher</span>
+          </div>
+          <p class="map-note">Interactive India map with pan/zoom. Hover a state to see offers and percentage.</p>
+          <div id="map-tooltip" class="map-tooltip" role="tooltip"></div>
+        </div>
+        <div class="stats-side">
+          <div class="stat-card"><div class="stat-value">1.27 lakh</div><div class="stat-label">Opportunities (Round 1)</div></div>
+          <div class="stat-card"><div class="stat-value">1.18 lakh</div><div class="stat-label">Opportunities (Round 2)</div></div>
+          <div class="stat-card"><div class="stat-value">1.53 lakh+</div><div class="stat-label">Offers Made (Pilot)</div></div>
+          <div class="stat-card"><div class="stat-value">50,500</div><div class="stat-label">Offers Accepted</div></div>
+          <div class="stat-card"><div class="stat-value">8,700</div><div class="stat-label">Interns Joined (~6%)</div></div>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Gender Representation</h3>
+          <div class="line-chart-root" id="gender-chart"></div>
+          <p class="chart-note">Round 1: Applications 31%, Recruitment 28%. Round 2: Applications 41%, Recruitment data not available.</p>
+        </div>
+        <div class="chart-card">
+          <h3>Top Companies Participating</h3>
+          <div class="company-chips">
+            <span class="chip">Reliance Industries</span>
+            <span class="chip">TCS</span>
+            <span class="chip">HDFC Bank</span>
+            <span class="chip">ONGC</span>
+            <span class="chip">Infosys</span>
+            <span class="chip">NTPC</span>
+            <span class="chip">Maruti Suzuki</span>
+            <span class="chip">Jubilant FoodWorks</span>
+            <span class="chip">Jindal Steel &amp; Power</span>
+            <span class="chip">HCL Technologies</span>
+            <span class="chip">Indian Oil</span>
+            <span class="chip">ICICI Bank</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Student Application Form -->
+  <section id="student-apply">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <div class="form-container">
+        <form id="application-form">
+          <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full-name" required>
+            <span class="error">Please enter your full name</span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+            <span class="error">Please enter a valid email address</span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us how we can help you" required></textarea>
+            <span class="error">Please enter a message</span>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>Have questions? Reach out to us at <a href="mailto:support@AiNTERN.com">support@AiNTERN.com</a>.</p>
+    </div>
+  </section>
+
+  <!-- Leaflet JS must load before our app script -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="script.js"></script>
+
+  <!-- Firebase + Firestore script -->
+  <script type="module">
+    // --- Firebase SDK imports ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    // ---------- Use your Firebase config here ----------
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbMUoq3Cjx3IvWo-b2hPsp-s9E3cAHRsY",
+      authDomain: "aintern-285f9.firebaseapp.com",
+      projectId: "aintern-285f9",
+      storageBucket: "aintern-285f9.firebasestorage.app",
+      messagingSenderId: "1035209257137",
+      appId: "1:1035209257137:web:dd20ce2d10842d6f127290",
+      measurementId: "G-4QSNCJQYFY"
+    };
+    // --------------------------------------------------
+
+    // Initialize Firebase & Firestore
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    console.log("Firebase initialized:", firebaseConfig.projectId);
+
+    // Form handling
+    const form = document.getElementById("application-form");
+    if (!form) {
+      console.error("Form #application-form not found in DOM.");
+    } else {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const submitBtn = form.querySelector("button[type='submit']");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+
+        const fullName = document.getElementById("full-name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        try {
+          console.log("Submitting contact message:", { fullName, email, message });
+          const docRef = await addDoc(collection(db, "contacts"), {
+            fullName,
+            email,
+            message,
+            createdAt: serverTimestamp()
+          });
+
+          console.log("Application saved. Document ID:", docRef.id);
+          alert("✅ Message sent successfully! ID: " + docRef.id);
+          form.reset();
+        } catch (err) {
+          console.error("Error writing document:", err);
+          alert("❌ Failed to send message. See console for details.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit Application";
+        }
+      });
+    }
+  </script>
+  <!-- Chatbot -->
+<link rel="stylesheet" href="chatbot.css">
+<script src="chatbot.js" defer></script>
+
+<div id="chatbot-container">
+  <div id="chatbot-icon" onclick="toggleChat()">🤖</div>
+  <div id="chatbot-window">
+    <div id="chatbot-header">
+      AiNTERN Assistant 🤖
+      <span id="close-btn" onclick="toggleChat()">✖</span>
+    </div>
+    <div id="chatbot-body">
+      <div id="chatbot-messages"></div>
+      <input type="text" id="chatbot-input" placeholder="Type your question..." onkeypress="handleKey(event)">
+    </div>
+  </div>
+</div>
+
+<style>
+<style>
+.critics-corner {
+  background: linear-gradient(135deg, #1e1b3a, #3a1e5f);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 100%;
+  margin-top: 50px;
+  color: #f4f4f4;
+}
+
+.critics-corner h3 {
+  text-align: center;
+  font-size: 2rem;
+  color: #ff80ab;
+  margin-bottom: 35px;
+  letter-spacing: 0.5px;
+}
+
+.review-wrapper {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+
+.review-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  text-align: center;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #2a2547;
+  border-radius: 16px;
+}
+
+.review-card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.review-card h4 {
+  font-size: 1.4rem;
+  color: #ffd54f;
+  margin-bottom: 8px;
+}
+
+.review-card .role {
+  display: block;
+  font-size: 1rem;
+  color: #cfd8dc;
+  margin-bottom: 15px;
+}
+
+.review-card p {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.review-card .timeline {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.9rem;
+  color: #b39ddb;
+  font-style: italic;
+}
+</style>
+<!-- Footer Start -->
+<footer>
+  <div class="footer-container">
+    <p>© <span id="year"></span> Aintern, Inc. All rights reserved.</p>
+    <p>
+      <a href="/terms.html">Terms of Service</a> |
+      <a href="/privacy.html">Privacy Policy</a> |
+      <a href="/contact.html">Contact Us</a>
+    </p>
+    <p> Educational Project Made For SIH2025</p>
+    <p> MADE IN INDIA ❤️❤️</p>
+  </div>
+</footer>
+
+<!-- Dynamic Year Script -->
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<style>
+.about-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 30px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.about-illustration {
+  flex: 1 1 400px;
+  max-width: 500px;
+}
+
+<style>
+.critics-corner {
+  background: linear-gradient(135deg, #1e1b3a, #3a1e5f);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 100%;
+  margin-top: 50px;
+  color: #f4f4f4;
+}
+
+.critics-corner h3 {
+  text-align: center;
+  font-size: 2rem;
+  color: #ff80ab;
+  margin-bottom: 35px;
+  letter-spacing: 0.5px;
+}
+
+.review-wrapper {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+
+.review-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  text-align: center;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #2a2547;
+  border-radius: 16px;
+}
+
+.review-card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.review-card h4 {
+  font-size: 1.4rem;
+  color: #ffd54f;
+  margin-bottom: 8px;
+}
+
+.review-card .role {
+  display: block;
+  font-size: 1rem;
+  color: #cfd8dc;
+  margin-bottom: 15px;
+}
+
+.review-card p {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.review-card .timeline {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.9rem;
+  color: #b39ddb;
+  font-style: italic;
+}
+</style>
+<!-- Footer CSS -->
+<style>
+  footer {
+    background-color: #f8f8f8;
+    color: #555;
+    text-align: center;
+    padding: 20px 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+  }
+  footer a {
+    color: #555;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  .footer-container p {
+    margin: 5px 0;
+  }
+</style>
+<!-- Footer End -->
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logout | PM Internship Portal</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #f4f7fa; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      height: 100vh; 
+      margin: 0; 
+    }
+    .box {
+      background: #fff; 
+      padding: 30px; 
+      border-radius: 8px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+      text-align: center; 
+    }
+    h1 { color: #2c3e50; margin-bottom: 10px; }
+    p { color: #666; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1 id="status">Logged out successfully!</h1>
+    <p id="subtext">Redirecting to home page...</p>
+  </div>
+
+  <script>
+    // Clear any session/local storage (if used for login)
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Redirect after 2 seconds
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 2000);
+  </script>
+</body>
+</html>
